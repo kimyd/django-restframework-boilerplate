@@ -1,0 +1,13 @@
+# ignore compiled files
+*.pyc
+*.pyo
+*.pyd
+
+# ignore .env file
+.env
+
+# ignore __pycache__ folder
+__pycache__/
+
+# ignore .DS_Store file
+.DS_Store

@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  django:
+    build: .
+    command: >
+      sh -c "/code/entrypoint.sh"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    environment:
+      - DJANGO_SETTINGS_MODULE=django_restframework_boilerplate.settings
+    env_file:
+      - .env
+    volumes:
+      - ./static:/code/static
+
+  postgres:
+    image: postgres:16.4-alpine
+    container_name: django_restframework_boilerplate_postgres
+    environment:
+      - POSTGRES_DB=django_restframework_boilerplate
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
